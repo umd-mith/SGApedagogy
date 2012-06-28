@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="SGA Pedagogy : Markup Pedagogy Pages for the Shelley-Godwin Archive" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>SGA Pedagogy</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/amandavisconti/SGApedagogy">View on GitHub</a>
+
+          <h1 id="project_title">SGA Pedagogy</h1>
+          <h2 id="project_tagline">Markup Pedagogy Pages for the Shelley-Godwin Archive</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/amandavisconti/SGApedagogy/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/amandavisconti/SGApedagogy/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Basic TEI Elements for Encoding Primary Manuscripts in Shelley-Godwin Archive</h1>
+
+<p>by David Brookshire</p>
+
+<h2>1. Zones </h2>
+
+<p></p>
+
+<p>The manuscript page is divided into zones. The "main" zone contains the main body of writing. The "pagination" zone contains page numbers supplied by the author. The "library" zone contains additional information, such as folio numbers, supplied by the holding library. The "top" zone contains chapter headings or titles. And the "left-margin" zone indicates that a margin has been created on the left side of the page using a vertical pencil line. For the Frankenstein manuscript, the left margin zone is used as a space for additions. The differing characteristics of manuscript sources will determine what kinds of zones will be used.</p>
+
+<h2>2. Lines </h2>
+
+<p>Each line of writing in the manuscript is nested within the  element. </p>
+
+<p>of the storm without wishing to</p>
+
+<h2>3. Paragraphs </h2>
+
+<p>To indicate a paragraph break, use the  element. </p>
+
+<p>This is the end of a paragraph.This is the start of a new paragraph.</p>
+
+<p>The backslash "/" indicates that the element is empty, so it does not require a closing element.</p>
+
+<h2>4. Simple Additions </h2>
+
+<p>the wild fancies of these authors with</p>
+
+<p>Here, Percy has simply added "se" to the to make "these." For additions that appear above the line use the "superlinear" attribute, for those below use "sublinear".</p>
+
+<p>I cheerfully consented.</p>
+
+<h2>5. Simple Deletions <del></del>
+</h2>
+
+<p>aplied myself to <del>m</del> the more <del>ra</del> rational</p>
+
+<p>Here, the "m" and the "ra" have been struckthrough without any other modifications. The most common deletion type is a strikethrough. Less common forms of deletion include ink smears and overwrites. Because overwritten text includes both an addition and a deletion, it would be encoded within a  element that links them together as a single authorial intervention. For example,</p>
+
+<p>th<del>is</del>e text has been overwritten</p>
+
+<p>The "is" in "this" has been written over with an "e" to make "the." </p>
+
+<h2>6. Cross-linear Additions and Deletions </h2>
+
+<p>phænonema. On Elizabeth<br>
+     andClerval it produced a <del>di</del> very differenteffect. They admired the beautyof the storm without wishing toanalyze its causes. Henry said thatthe Fairies and giants were atwar and Elizabeth attempteda picture of it.</p>
+
+<h2>7. Simple Modifications </h2>
+
+<p>The  element is used to group several revisions into one textual intervention: for example, substitutions, corrections, and overwrites. The  element also allows us to encode the sequence of these changes. In the example below, "difference" was canceled and replaced by "alteration", which appears above the original line. </p>
+
+<p>It is encoded as:</p>
+
+<p>a great <del>difference</del>alteration in my sensations; before</p>
+
+<p>The  element is also used to group together a caret and the additional text it signifies.</p>
+
+<p>. . . for ‸he was<del>con</del> constantly</p>
+
+<p>The caret was inserted below the line after "for" and indicates that the "he" added above the line should be inserted.</p>
+
+<h2>8. Cross-linear Modifications </h2>
+
+<p>Let's take a look at a complex modification that spans several lines. These are more difficult because of the nesting problems that arise when attempting to link together a modification that spans across the  element. Link cross-linear additions and deletions by inserting the "next" attribute within the element and linking it to an xml:id with the same value within the partner addition or deletion. </p>
+
+<p><del>When it was most</del>
+     violent,
+      element can identify within the main zone where the marginal addition is meant to be placed. Use  to indicate the end of an . The  element is empty and only indicates the end of a sequence of text. The xml:id in the  or  element identifies the passage that is meant to be inserted into the main zone.</p>
+
+<p> . . .  . . . </p>
+
+<p>its progresswith curiosity&amp; delight</p>
+
+<p>For a marginal addition of only a single line, simply place an xml:id within the  element to link it to the  element within the main zone.</p>
+
+<p><del>various</del></p>
+
+<p>In the above example, the addition was later deleted, so it is nested within the <del> element.</del></p>
+
+<p>The following example is more complex:</p>
+
+<p>I thinkthe journeyto Englandought to beVictor's propo-sal.— that heought to gofor the purpose ofcollectingknowledge, forthe formationof a female.He ought tolead his father tothis inthe conversations—theconversationcommencesright enough</p>
+
+<p>This marginal addition, in the hand of Percy, was ultimately deleted by striking through the text with a vertical line. There are also several passages that have been underlined. Use the  (highlight) element with "underline" a the attribute to indicate the change in appearance.</p>
+
+<p>The next example is even more complex and includes the unholy alliance of cross-linear additions and deletions, super- and sublinear additions, and text from the left margin that is meant to be inserted into the main body. Furthermore, there are hand shifts between MWS and PBS and instances where MWS overwrites in ink what PBS had written in pencil. To avoid madness, simply indicate the hand as it is given in the transcription file. The reviewer will sort out the details later. </p>
+
+<p>If the text showed only a multiple-line deletion from "my own hard nerves" to "young ma" then we could simply encode the deletion using . But since there are additions meant to replace that deleted text, we need to use  with the "next" attribute; otherwise, those additions would be subsumed as part of the . So each addition and deletion needs to be encoded separately for each line and then linked together with the "next" attribute. We also need to use the  element to indicate where the additions in the left margin should be placed in the main zone. </p>
+
+<p><br>love that I felt <del>my own hard nerves</del>
+    sensations of a peculiar       &amp; overpowering<del>move and I was   obliged to withdraw from</del>
+    mixture of pain &amp;     pleasure; such <del>as</del> as I had never experienced<del>my the hole.  Presently the young    ma</del>
+     either from <del>the</del> hunger or cold, <del>orfrom</del>   or warmth or food and ISoon after this the young man     returned</p>
+
+<p>nature they were    a</p>
+
+<p>withdrewfrom my stationunable tobear these<del>emotio</del>nsemotions</p>
+
+<h2>10. Shifts in Hands </h2>
+
+<p>To indicate an addition in a hand other than that of the primary author, use the "hand" attribute within the  element.</p>
+
+<p>string <del>and</del>. The backslash indicates that the element is empty and that the shift in hand continues until another shift in hand takes place.</p>
+
+<h2>11. Uncertain Readings </h2>
+
+<p>Text that is illegible is enclosed within the  element. If the text is partially recognizable, indicate it as follows:</p>
+
+<p>During her confinement mady many</p>
+
+<p>If the text is obscured by ink blots, foxing, or is completely illegible. Use an empty  tag and indicate the approximate length of the uncertain reading. "char" stands for "characters".</p>
+
+<p>During her confinement  many</p>
+
+<h2>12. Encoding Spaces </h2>
+
+<p>To encode significant spaces between passages or words, use the  element and indicate the length of the space.</p>
+
+<p>acquired  and</p>
+
+<p>Do not encode spaces unless there is a noticeable gap that extends well beyond the normal variation of spaces within a handwritten manuscript.</p>
+
+<h2>13. Damage to the Manuscript </h2>
+
+<p>If text is illegible or missing from manuscript because of damage, such as being torn or cut away, use the  element. The reviewer will add more details to the encoding. </p>
+
+<h2>14. Special Character Entities (hexadecimal values)</h2>
+
+<p>Caret (^): ‸
+Ampersand (&amp;): &amp;
+Em-dash (—):—
+En-dash (–):–
+æ dipthong: æ</p>
+
+<h2>15. Paratextual Notations and Additions </h2>
+
+<p>For paratextual notations such as carets, brackets, and "X"s that indicate insertion points for added material, enclose them within the  element.</p>
+
+<p>For notes or instructions added by either the author or compositor, use the  element. For example, in the fair-copy draft for Frankenstein, the compositor writes his initials and indicates where he either ends or begins typesetting: </p>
+
+<p>F. W./My courage . . .</p>
+
+<h2>16. Reviewing and Closing Encoded Transcription Files and Issues (Reviewers Only)</h2>
+
+<ol>
+<li>Synchronize repository in Github desktop client</li>
+<li>Browse pull requests in online Github</li>
+<li>Search for and select the branch in Github desktop client.</li>
+<li>Make changes on the branch.</li>
+<li>Commit changes.</li>
+<li>Merge the branch into Master.</li>
+<li>Commit changes.</li>
+<li>Add Final Review comment in online Github and close the issue.</li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">SGA Pedagogy maintained by <a href="https://github.com/amandavisconti">amandavisconti</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
